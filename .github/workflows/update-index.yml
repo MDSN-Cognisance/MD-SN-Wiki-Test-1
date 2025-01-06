@@ -1,4 +1,4 @@
-name: Update TiddlyWiki
+name: Auto-Update TiddlyWiki
 
 on:
   push:
