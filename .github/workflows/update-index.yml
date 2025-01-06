@@ -1,4 +1,4 @@
-name: Auto-Update TiddlyWiki
+nname: Auto-Update TiddlyWiki
 
 on:
   push:
@@ -18,15 +18,16 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Install TiddlyWiki CLI globally
+      # Step 3: Install TiddlyWiki CLI
       - run: npm install -g tiddlywiki
 
       # Step 4: Build the index.html file
       - run: tiddlywiki . --build index
 
-      # Step 5: Deploy the updated wiki (output folder) to GitHub Pages
+      # Step 5: Deploy the updated wiki to GitHub Pages
       - name: Deploy Updated Wiki
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           publish_dir: output
+
