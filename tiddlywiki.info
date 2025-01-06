@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "description": "Basic client-server edition",
   "plugins": [],
@@ -53,3 +54,6 @@
     "retain-original-tiddler-path": true
   }
 }
+=======
+{}
+>>>>>>> d1c3bab (Commit with Git-Sync-JS)
