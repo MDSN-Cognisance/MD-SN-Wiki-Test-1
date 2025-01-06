@@ -21,10 +21,16 @@ jobs:
       # Step 3: Install TiddlyWiki CLI
       - run: npm install -g tiddlywiki
 
-      # Step 4: Build the index.html file
+      # Step 4: Clean output folder and rebuild index.html
+      - run: rm -rf output
+      - run: mkdir output
       - run: tiddlywiki . --build index
 
-      # Step 5: Deploy the updated wiki to GitHub Pages
+      # Debugging: List and inspect output folder
+      - run: ls -al output
+      - run: cat output/index.html
+
+      # Step 5: Deploy updated wiki
       - name: Deploy Updated Wiki
         uses: peaceiris/actions-gh-pages@v3
         with:
