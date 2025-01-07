@@ -1,4 +1,4 @@
-name: Auto-Update TiddlyWiki
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -20,11 +20,18 @@ jobs:
         run: npm install -g tiddlywiki
 
       - name: Build Wiki
-        run: tiddlywiki . --build index --output . # Explicitly specify main directory
+        run: tiddlywiki . --build index
 
-      - name: Deploy Updated Wiki
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish_dir: .
+          path: ./docs # Ensure this matches your build output directory
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
