@@ -8,7 +8,7 @@ on:
       - "tiddlers/**"
 
 permissions:
-  # For GitHub Pages ephemeral deployments
+  # Required for GitHub Pages ephemeral deployments
   contents: write
   pages: write
   id-token: write
@@ -17,7 +17,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
-    # environment: github-pages is set at the job level (not under "with:")
+    # Define the GitHub Pages environment
     environment: github-pages
 
     steps:
@@ -37,24 +37,22 @@ jobs:
 
       # 4. Build the TiddlyWiki site
       - name: Build TiddlyWiki
-        run: tiddlywiki . --build index  # Outputs to ./output by default
+        run: tiddlywiki . --build index  # Outputs files into ./output
 
-      # 5. Debug: Check what's actually in ./output
+      # 5. Debug: Ensure ./output contains files
       - name: Debug Output Directory
         run: |
           echo "Contents of ./output:"
           ls -R ./output || echo "No files in ./output"
 
-      # 6. Upload the ephemeral GitHub Pages artifact
+      # 6. Upload the GitHub Pages artifact
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Must match where your index.html and others are generated
+          # Ensure this matches where your build files are generated
           path: ./output
+          name: github-pages
 
-      # 7. Deploy
+      # 7. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-        # The warning about 'environment' means you should NOT put environment in 'with:'
-        # Instead, the environment is declared at the job level above.
-
