@@ -22,16 +22,16 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install TiddlyWiki CLI
+      - name: Install TiddlyWiki
         run: npm install -g tiddlywiki
 
       - name: Build TiddlyWiki
         run: tiddlywiki . --build index
 
-      - name: Upload Pages artifact
+      - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./output  # adjust if your build outputs elsewhere
+          path: ./output  # or wherever your files actually are
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,3 +41,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+
