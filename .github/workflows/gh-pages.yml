@@ -1,12 +1,9 @@
-name: Deploy TiddlyWiki To Github Pages
+name: Build and Deploy TiddlyWiki to GitHub Pages
 
 on:
   push:
     branches:
       - main
-    paths:
-      - "plugins/**"
-      - "package.json"
 
 permissions:
   contents: write
@@ -14,51 +11,41 @@ permissions:
   id-token: write
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      # Set up Node.js environment
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 'latest'
-          run_install: false
+      # Install TiddlyWiki globally
+      - name: Install TiddlyWiki
+        run: npm install -g tiddlywiki
 
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+      # Build the TiddlyWiki site
+      - name: Build TiddlyWiki
+        run: tiddlywiki . --build index  # Outputs to ./output
 
-      - name: Install Dependency
-        run: pnpm install
-
-      - name: Building online versions of web pages
-        run: pnpm run buildonline
-
-      - name: Building downloadable offline versions of web pages
-        run: pnpm run buildoffline
-
+      # Debug to ensure output directory contains files
       - name: Debug Output Directory
         run: |
           echo "Contents of ./output:"
           ls -R ./output || echo "No files in ./output"
 
+      # Upload the GitHub Pages artifact
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v1
         with:
-          path: ./output
-          name: github-pages
+          path: ./output  # Ensure this matches where your index.html is located
 
+      # Deploy the site to GitHub Pages
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
-
+        with:
+          environment: github-pages
