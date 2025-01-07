@@ -25,7 +25,7 @@ jobs:
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./docs # Ensure this matches your build output directory
+          path: ./output # Update this to use the output folder
 
   deploy:
     runs-on: ubuntu-latest
