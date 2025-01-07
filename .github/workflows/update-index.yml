@@ -17,7 +17,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Set up Node
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -28,15 +28,17 @@ jobs:
       - name: Build TiddlyWiki
         run: tiddlywiki . --build index
 
-      - name: Debug Output
-        # This step lists the contents of the output directory for debugging
-        run: ls -R ./output || echo "No files in output"
+      - name: Debug Output Directory
+        # Verify output directory and list all files
+        run: |
+          echo "Output directory contents:"
+          ls -l ./output || echo "No files in ./output"
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './output'  # Correct path since files are directly in output
-          name: github-pages  # Explicitly name the artifact to avoid confusion
+          path: './output'  # Ensure this matches your output directory
+          name: github-pages  # Explicitly name the artifact
 
   deploy:
     runs-on: ubuntu-latest
