@@ -4,8 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "tiddlers/**"
 
 permissions:
+  # For GitHub Pages ephemeral deployments
   contents: write
   pages: write
   id-token: write
@@ -13,39 +16,45 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    
+    # environment: github-pages is set at the job level (not under "with:")
+    environment: github-pages
+
     steps:
-      # Checkout the repository
-      - name: Checkout repository
+      # 1. Check out code
+      - name: Check out repository
         uses: actions/checkout@v4
 
-      # Set up Node.js environment
+      # 2. Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: '16'
 
-      # Install TiddlyWiki globally
+      # 3. Install TiddlyWiki globally
       - name: Install TiddlyWiki
         run: npm install -g tiddlywiki
 
-      # Build the TiddlyWiki site
+      # 4. Build the TiddlyWiki site
       - name: Build TiddlyWiki
-        run: tiddlywiki . --build index  # Outputs to ./output
+        run: tiddlywiki . --build index  # Outputs to ./output by default
 
-      # Debug to ensure output directory contains files
+      # 5. Debug: Check what's actually in ./output
       - name: Debug Output Directory
         run: |
           echo "Contents of ./output:"
           ls -R ./output || echo "No files in ./output"
 
-      # Upload the GitHub Pages artifact
+      # 6. Upload the ephemeral GitHub Pages artifact
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./output  # Ensure this matches where your index.html is located
+          # Must match where your index.html and others are generated
+          path: ./output
 
-      # Deploy the site to GitHub Pages
+      # 7. Deploy
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-        with:
-          environment: github-pages
+        # The warning about 'environment' means you should NOT put environment in 'with:'
+        # Instead, the environment is declared at the job level above.
+
