@@ -27,15 +27,15 @@ jobs:
         run: npm install -g tiddlywiki
 
       - name: Build TiddlyWiki
-        run: tiddlywiki . --build index
+        run: tiddlywiki . --build index  # Outputs files into the output directory
 
-      - name: Debug Build Directory
+      - name: Debug Output Directory
         run: |
-          echo "Contents of the root directory:"
-          ls -R . || echo "No files in root directory"
+          echo "Contents of ./output:"
+          ls -R ./output || echo "No files in ./output"
 
       - name: Upload TiddlyWiki Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: '.'
+          path: ./output
           name: tiddlywiki-artifact
