@@ -8,6 +8,7 @@ on:
 permissions:
   id-token: write
   contents: read
+  pages: write
 
 jobs:
   build:
@@ -36,8 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: github-pages # REQUIRED to deploy to GitHub Pages
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
