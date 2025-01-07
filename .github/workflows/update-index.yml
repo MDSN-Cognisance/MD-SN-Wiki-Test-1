@@ -9,31 +9,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Check out the repository
       - uses: actions/checkout@v3
 
-      # Step 2: Install Node.js
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      # Step 3: Install TiddlyWiki CLI
-      - run: npm install -g tiddlywiki
+      - name: Install TiddlyWiki CLI
+        run: npm install -g tiddlywiki
 
-      # Step 4: Clean output folder and rebuild index.html
-      - run: rm -rf output
-      - run: mkdir output
-      - run: tiddlywiki . --build index
+      - name: Build Wiki
+        run: tiddlywiki . --build index --output . # Explicitly specify main directory
 
-      # Debugging: List and inspect output folder
-      - run: ls -al output
-      - run: cat output/index.html
-
-      # Step 5: Deploy updated wiki
       - name: Deploy Updated Wiki
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish_dir: docs
+          publish_dir: .
 
