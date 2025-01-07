@@ -20,24 +20,23 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: '16'
 
       - name: Install TiddlyWiki
         run: npm install -g tiddlywiki
 
       - name: Build TiddlyWiki
-        # This command must produce files in ./output (or some known folder).
+        # Must place output in the folder you reference in "Upload Pages Artifact"
         run: tiddlywiki . --build index
 
       - name: Upload Pages Artifact
-        # IMPORTANT: This must be 'actions/upload-pages-artifact@v1'.
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./output  # Or your actual output folder
+          # IMPORTANT: Make sure this folder actually has the final HTML files
+          path: ./output  # or './output/**/*' if needed
 
   deploy:
     runs-on: ubuntu-latest
-    # This ensures the 'deploy' job waits until 'build' finishes
     needs: build
     environment:
       name: github-pages
