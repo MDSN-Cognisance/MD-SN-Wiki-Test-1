@@ -26,19 +26,18 @@ jobs:
         run: npm install -g tiddlywiki
 
       - name: Build TiddlyWiki
-        run: tiddlywiki . --build index
+        run: tiddlywiki . --build index  # Outputs files directly into the root directory
 
-      - name: Debug Output Directory
-        # Verify output directory and list all files
+      - name: Debug Build Directory
         run: |
-          echo "Output directory contents:"
-          ls -l ./output || echo "No files in ./output"
+          echo "Contents of the root directory:"
+          ls -R . || echo "No files in root directory"
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './output'  # Ensure this matches your output directory
-          name: github-pages  # Explicitly name the artifact
+          path: '.'  # Upload all files in the main directory
+          name: github-pages
 
   deploy:
     runs-on: ubuntu-latest
