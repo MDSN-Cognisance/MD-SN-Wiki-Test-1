@@ -7,12 +7,12 @@
     "index": [
       "--rendertiddler",
       "$:/core/save/all",
-      "./index.html", // Ensure path is explicitly in the main directory
+      "./index.html",
       "text/plain"
     ]
   },
   "config": {
     "retain-original-tiddler-path": true,
-    "output": "." // Forces the base output directory to the main directory
+    "output": "."
   }
 }
