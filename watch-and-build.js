@@ -12,6 +12,8 @@ console.log('Watching for changes in the tiddlers folder...');
 // Trigger rebuild and push when a change is detected
 watcher.on('all', (event, path) => {
     console.log(`${event} detected in ${path}. Rebuilding index...`);
+    
+    // Rebuild the index.html in the 'docs' folder
     exec('tiddlywiki . --build index', (err, stdout, stderr) => {
         if (err) {
             console.error(`Error: ${err.message}`);
@@ -23,9 +25,9 @@ watcher.on('all', (event, path) => {
         }
         console.log(`Build Output: ${stdout}`);
         
-        // Push the updated index.html to GitHub
-        console.log('Pushing updated index.html to GitHub...');
-        exec('git add output/index.html && git commit -m "Auto-update index.html" && git push', (gitErr, gitStdout, gitStderr) => {
+        // Push the updated docs folder to GitHub
+        console.log('Pushing updated docs folder to GitHub...');
+        exec('git add docs && git commit -m "Auto-update index.html" && git push', (gitErr, gitStdout, gitStderr) => {
             if (gitErr) {
                 console.error(`Git Error: ${gitErr.message}`);
                 return;
@@ -38,3 +40,4 @@ watcher.on('all', (event, path) => {
         });
     });
 });
+
