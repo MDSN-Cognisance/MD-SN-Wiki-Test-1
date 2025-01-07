@@ -26,14 +26,17 @@ jobs:
         run: npm install -g tiddlywiki
 
       - name: Build TiddlyWiki
-        # Must place output in the folder you reference in "Upload Pages Artifact"
         run: tiddlywiki . --build index
+
+      - name: Debug Output
+        # This step lists the contents of the output directory for debugging
+        run: ls -R ./output || echo "No files in output"
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # IMPORTANT: Make sure this folder actually has the final HTML files
-          path: ./output  # or './output/**/*' if needed
+          path: './output'  # Correct path since files are directly in output
+          name: github-pages  # Explicitly name the artifact to avoid confusion
 
   deploy:
     runs-on: ubuntu-latest
