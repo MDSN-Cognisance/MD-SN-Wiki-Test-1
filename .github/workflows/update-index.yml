@@ -35,5 +35,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish_dir: output
+          publish_dir: docs
 

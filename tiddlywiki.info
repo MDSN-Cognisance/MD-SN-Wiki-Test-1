@@ -7,7 +7,7 @@
     "index": [
       "--rendertiddler",
       "$:/core/save/all",
-      "index.html",
+      "docs/index.html",
       "text/plain"
     ],
     "externalimages": [
