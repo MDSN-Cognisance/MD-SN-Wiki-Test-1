@@ -6,8 +6,8 @@ on:
       - main
 
 permissions:
-  id-token: write
   contents: read
+  id-token: write
   pages: write
 
 jobs:
@@ -20,25 +20,27 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: "16"
 
       - name: Install TiddlyWiki
         run: npm install -g tiddlywiki
 
       - name: Build TiddlyWiki
+        # This command must produce files in ./output (or some known folder).
         run: tiddlywiki . --build index
 
       - name: Upload Pages Artifact
+        # IMPORTANT: This must be 'actions/upload-pages-artifact@v1'.
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./output  # or wherever your files actually are
+          path: ./output  # Or your actual output folder
 
   deploy:
     runs-on: ubuntu-latest
+    # This ensures the 'deploy' job waits until 'build' finishes
     needs: build
     environment:
       name: github-pages
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-
