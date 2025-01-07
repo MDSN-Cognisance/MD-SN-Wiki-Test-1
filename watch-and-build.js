@@ -1,56 +1,32 @@
 const chokidar = require('chokidar');
 const { exec } = require('child_process');
 
-// Variables to handle sync and debounce logic
-let syncInProgress = false;
-let debounceTimer = null;
-
-// Watch the tiddlers folder for file changes
-const watcher = chokidar.watch('./tiddlers', {
-    persistent: true,
-    ignoreInitial: true, // Don't trigger on initial load
-    awaitWriteFinish: {
-        stabilityThreshold: 2000, // Wait 2 seconds after the last file change
-        pollInterval: 100,
-    },
+// Watch the Git logs for changes
+const watcher = chokidar.watch('./.git/logs/HEAD', {
+  persistent: true,
+  ignoreInitial: true,
 });
 
-console.log('Watching for TidGi sync events...');
+console.log('Watching for Git commits in .git/logs/HEAD...');
 
-// Rebuild function
-function rebuildWiki() {
-    if (syncInProgress) return; // Prevent overlapping builds
-    syncInProgress = true;
+watcher.on('change', (path) => {
+  console.log(`Git commit detected at: ${path}`);
+  
+  // Rebuild your index.html
+  exec('tiddlywiki . --build index', (err) => {
+    if (err) {
+      console.error(`Build Error: ${err.message}`);
+      return;
+    }
+    console.log('Build completed.');
 
-    console.log('TidGi sync detected. Rebuilding index...');
-
-    // Run the TiddlyWiki build command
-    exec('tiddlywiki . --build index', (err, stdout, stderr) => {
-        if (err) {
-            console.error(`Build Error: ${err.message}`);
-            syncInProgress = false;
-            return;
-        }
-        console.log('Build completed.');
-
-        // Push changes to GitHub
-        exec('git add . && git commit -m "Auto-update index.html" && git push', (gitErr, gitStdout, gitStderr) => {
-            if (gitErr) {
-                console.error(`Git Error: ${gitErr.message}`);
-                syncInProgress = false;
-                return;
-            }
-            console.log('Changes pushed to GitHub.');
-            syncInProgress = false; // Allow new sync-triggered builds
-        });
+    // Then do the usual git add & push if you want
+    exec('git add index.html && git commit -m "Auto-update index.html" && git push', (gitErr) => {
+      if (gitErr) {
+        console.error(`Git Error: ${gitErr.message}`);
+        return;
+      }
+      console.log('Changes pushed to GitHub.');
     });
-}
-
-// Watcher event handler
-watcher.on('all', (event, path) => {
-    console.log(`${event} detected at ${path}`);
-    clearTimeout(debounceTimer); // Reset debounce timer
-    debounceTimer = setTimeout(() => {
-        rebuildWiki();
-    }, 3000); // Wait 3 seconds after the last file change before triggering
+  });
 });
