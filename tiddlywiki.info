@@ -7,12 +7,12 @@
     "index": [
       "--rendertiddler",
       "$:/core/save/all",
-      "./index.html",
+      "index.html",
       "text/plain"
     ]
   },
   "config": {
     "retain-original-tiddler-path": true,
-    "output": "."
+    "output": "./output"
   }
 }
