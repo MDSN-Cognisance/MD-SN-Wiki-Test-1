@@ -1,8 +1,8 @@
 caption: {{$:/language/ControlPanel/Palette/Config/DefaultDark/Caption}}
 created: 20250108030459015
 creator: Md12-30
-modified: 20250108030518966
+modified: 20250108035844563
 modifier: Md12-30
 title: $:/config/palette/default-dark
 
-$:/palettes/FlexokiDark
+$:/palettes/Twilight
