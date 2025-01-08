@@ -1,0 +1,18 @@
+created: 20250108024548949
+creator: Md12-30
+modified: 20250108024548950
+modifier: Md12-30
+tags: 
+td-namespace: Mo's Todos
+title: Todolist - Archived Items - Mo's Todos
+type: text/vnd.tiddlywiki
+
+\import $:/plugins/kookma/todolist/macros/archive-operations
+\import $:/plugins/kookma/todolist/macros/priority
+
+!! Archive of completed (done) items
+
+<$macrocall $name="todolist-empty-archived-tiddler" base={{!!td-namespace}} />
+
+> <$macrocall $name="todolist-list-archived-items"  base={{!!td-namespace}} />
+

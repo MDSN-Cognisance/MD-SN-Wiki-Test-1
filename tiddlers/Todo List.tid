@@ -1,0 +1,18 @@
+created: 20250108021134533
+creator: Md12-30
+modified: 20250108025149263
+modifier: Md12-30
+tags: [[Category Index]]
+title: Todo List
+type: text/vnd.tiddlywiki
+
+! ''A List of To-Do's for you and I to share''
+
+!! Shared Todos
+<<todolist-ui caption:"" width:"" base:"Shared">>
+
+!! Mohamed's Todos
+<<todolist-ui caption:"Learning TiddlyWiki" width:"" base:"Mohamed's Todos 1">>
+
+!! Steven's Todos
+<<todolist-ui caption:"Blank Todo List" width:"" base:"Steven's Todos">>

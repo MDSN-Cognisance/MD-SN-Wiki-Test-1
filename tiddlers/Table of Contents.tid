@@ -1,8 +1,10 @@
 created: 20250106063045565
 creator: Newsn1022
-modified: 20250108010849847
+modified: 20250108015950694
 modifier: Md12-30
 tags: Index
 title: Table of Contents
 
+!! The directory to major root/subject tiddlers
+!!! These tiddlers should be tagged with [[Category Index]]
 <<list-links "[tag[Category Index]]">>
