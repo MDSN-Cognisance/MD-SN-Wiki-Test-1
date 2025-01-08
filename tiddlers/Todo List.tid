@@ -1,6 +1,6 @@
 created: 20250108021134533
 creator: Md12-30
-modified: 20250108025149263
+modified: 20250108032943662
 modifier: Md12-30
 tags: [[Category Index]]
 title: Todo List
@@ -12,7 +12,11 @@ type: text/vnd.tiddlywiki
 <<todolist-ui caption:"" width:"" base:"Shared">>
 
 !! Mohamed's Todos
-<<todolist-ui caption:"Learning TiddlyWiki" width:"" base:"Mohamed's Todos 1">>
+!!! Learning TiddlyWiki Todos
+
+<$list filter="Fundamentals Filing/Organizing Filtering/Formatting Transclusion Organizational-Tools Widgets/Macros/Wikification Under_the_Hood" variable=prj>
+<$macrocall $name=todolist-ui base=<<prj>> caption="""<h3 style="color:blue;font-weight:bold;"><<prj>></h3>""" />
+</$list>
 
 !! Steven's Todos
 <<todolist-ui caption:"Blank Todo List" width:"" base:"Steven's Todos">>
