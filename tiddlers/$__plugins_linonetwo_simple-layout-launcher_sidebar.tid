@@ -1,0 +1,15 @@
+caption: <<lingo ShortName $:/plugins/linonetwo/simple-layout-launcher/language/>>
+created: 20250109004312991
+creator: Md12-30
+modified: 20250109004314742
+modifier: Md12-30
+tags: 
+title: $:/plugins/linonetwo/simple-layout-launcher/sidebar
+
+\procedure lingo-base() $:/plugins/linonetwo/simple-layout-launcher/language/
+
+!! <<lingo Name>>
+
+<div class="simple-layout-launcher-sidebar">
+  <<simple-layout-launcher>>
+</div>

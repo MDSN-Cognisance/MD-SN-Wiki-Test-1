@@ -1,0 +1,15 @@
+created: 20250109003849344
+creator: Md12-30
+modified: 20250109011234243
+modifier: Md12-30
+tags: [[Index: How To Use TiddlyWiki]] [[Contains Blatant Plagiarism]]
+title: Tiddlers
+
+In TiddlyWiki, everything is a tiddler: content, configuration, plugins, even the core code of TiddlyWiki itself. This means you get to use the same set of powerful tools for working with all these things.
+
+!!! What is a Tiddler made of?
+
+A Tiddler is composed of #field. Each field has a name, which describes what information it stores, and a value, which contains the actual information. 
+
+
+For example, the field titled '''Title''' contains the title of the tiddler and appears at the top of the tiddler.

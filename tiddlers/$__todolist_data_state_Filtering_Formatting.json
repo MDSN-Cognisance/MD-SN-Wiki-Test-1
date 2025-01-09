@@ -1,5 +1,7 @@
 {
     "itemtext": "",
     "markall": "",
-    "editview": "edit"
+    "editview": "view",
+    "option": "yes",
+    "timestamp": "show"
 }
