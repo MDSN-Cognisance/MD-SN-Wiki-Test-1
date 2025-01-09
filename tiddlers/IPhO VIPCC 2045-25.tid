@@ -1,6 +1,33 @@
 created: 20250109011443275
 creator: Md12-30
-modified: 20250109011525141
+modified: 20250109020206499
 modifier: Md12-30
 tags: [[Mohamed's Notes]]
 title: IPhO VIPCC 2045-25
+
+!!! IPho Challenge Point on 1/8/2025
+!!!! What is the challenge point?
+
+>Prompt: Chapters are to incorporate a clinical decision-tool for HCPs and/or payors into their submission.
+
+>* How will you align with HCP and/or payor needs?
+>> * Address the growing reliance on clinical decision tools by HCPs and payers to support evidence-based, cost-effective treatment choices
+>* Describe what information the HCP and/or payer will need to input into the tool.
+>> * Develop evidence-based pathways using clinical criteria (e.g., biomarkers, disease stage, line of treatment, patient characteristics) to guide treatment selection for HCPs
+>> * Develop evidence-based treatment considerations (e.g. cost savings, treatment efficacy, healthcare resource utilization) to help facilitate payer coverage of treatment
+>* How will you integrate the tool into existing HCP workflows and/or how will payers access the tool?
+>>* Examples: seamlessly integrate with EHR systems, offering intuitive and time-efficient usability, offer services within a user-friendly app, or utilize other digital technology options
+
+''Main Takeaways''
+
+* Need to make a clinical decision tool ~ whatevevr modality it comes in is nto specified 
+* Rings the tone of an algorithm that HCPs and Payers are intended to use to determine if this treatment is the best fit for a patient
+* The tool needs to incude data and evidence-based reasoning, asking us to also consider clinical and non-clinical factors for treatment optimization
+* "...to help facilitate payer coverage of treatment..." brings to mind the use of non-efficacy factors through at atleast non-inferiority testing vs Sipu
+* We cna consider integration of an algorithm type tool into EHRs, online-hosted by out company, can also think about providing a physical plaque or poster for providers to have for easy reference.
+* Should include different stages of treatment, including patient's progression, expected survival outcomes. Include the place of Vipa before/after immune comprimising treatments, ect...
+
+!!!! Pearls from the Q&Q
+# We can do combined phase 1/2 trials and use a variety of designs as long as they make developmental sense
+# The Challange Point integration into the final presentation is left to our creativity
+# Grading will look at the accuracy/feasability of the plan while also considering the creativity that went into it.
