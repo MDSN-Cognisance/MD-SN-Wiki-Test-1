@@ -1,6 +1,6 @@
 created: 20250109003849344
 creator: Md12-30
-modified: 20250109011234243
+modified: 20250114184726200
 modifier: Md12-30
 tags: [[Index: How To Use TiddlyWiki]] [[Contains Blatant Plagiarism]]
 title: Tiddlers
@@ -11,5 +11,6 @@ In TiddlyWiki, everything is a tiddler: content, configuration, plugins, even th
 
 A Tiddler is composed of #field. Each field has a name, which describes what information it stores, and a value, which contains the actual information. 
 
+For example, the field titled __Title__ contains the title of the tiddler and appears at the top of the tiddler.
 
-For example, the field titled '''Title''' contains the title of the tiddler and appears at the top of the tiddler.
+In addition to the built-in fields, you can add your own fields to any tiddler on the fly, should you wish to. For instance, you might add fields to a tiddler containing meeting notes to define what time the meeting happened and who attended. Storing this information in separate fields, rather than directly within the text of the tiddler, lets you retrieve specifically that information for use in another part of the wiki, or search and filter based on it.

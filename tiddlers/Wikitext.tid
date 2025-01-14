@@ -1,6 +1,16 @@
 created: 20250108020056844
 creator: Md12-30
-modified: 20250108020956348
+modified: 20250114185016901
 modifier: Md12-30
-tags: [[Index: How To Use TiddlyWiki]]
+tags: [[Index: How To Use TiddlyWiki]] [[Contains Blatant Plagiarism]]
 title: Wikitext
+
+!!! Wikitext is the editing/writing style of tiddlywiki
+
+Many text-editing and note-taking tools are //WYSIWYG// (“What You See is What You Get”): that is, while editing the document, it looks exactly like it will look when viewed or printed. Common tools like Microsoft Word, Google Docs, Outlook, Gmail, and Evernote use this type of editor.
+
+TiddlyWiki takes a different approach: it uses a ''markup language'', or ''WYSIWYM'' paradigm (“What You See is What You Mean”). In this type of editor, you see only plain text while editing, and you include special characters or phrases (“markup”) along with the text to explain how it should be formatted when you view it. For instance, to see text in //italics// while viewing it, you put it between `//double slashes//` while editing.
+
+If you've never used a markup language before, this may seem like a primitive and overly difficult way to write content, and it's true that markup languages take a little longer to learn than WYSIWYG editors, but once you've learned them, they are more powerful. (Check out the [[Advantages of WYSIWYM]] appendix for details.)
+
+TiddlyWiki calls its markup language ''wikitext''. The basic structure of TiddlyWiki wikitext is similar to that of other popular markup languages like Markdown, MediaWiki, reStructuredText, and AsciiDoc. However, wikitext is more powerful than most other markup languages, because it offers expressions that pull data from and make decisions based on other tiddlers in your wiki. If you have some content stored somewhere in your wiki in a consistent format (which we'll learn how to do in this chapter and the next), you can use wikitext to slice and process it and display it in a different format -- it's like a spreadsheet for your notes. In fact, this facility is so flexible that the majority of TiddlyWiki itself is implemented in wikitext, rather than in a traditional programming language.
